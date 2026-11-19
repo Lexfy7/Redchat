@@ -1,0 +1,51 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="theme-color" content="#090909"><title>REDCHAT — Messagerie</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="app">
+  <aside class="rail">
+    <div class="brand-mark">R</div>
+    <button class="rail-btn active" title="Messages" data-view="chat">▤</button>
+    <button class="rail-btn" title="Paramètres" data-view="settings">⚙</button>
+    <div class="rail-spacer"></div><button class="avatar" id="profileAvatar">?</button>
+  </aside>
+  <aside class="sidebar">
+    <header class="side-head"><div><div class="eyebrow">ESPACE DE DISCUSSION</div><h1>REDCHAT</h1></div><span class="status-dot"></span></header>
+    <div class="user-card"><div class="avatar large" id="sideAvatar">?</div><div class="user-meta"><strong id="sideName">Invité</strong><small id="sideEmail">Non connecté</small></div><button class="icon-btn" id="signOutBtn" title="Déconnexion">↪</button></div>
+    <div class="section-label">SALONS <button id="addRoomBtn" class="tiny-btn" title="Créer un salon">＋</button></div>
+    <nav id="roomList" class="room-list"><button class="room active" data-room="general"><span>#</span> général</button></nav>
+    <div class="sidebar-bottom"><span class="online-pulse"></span><span id="connectionLabel">Mode démo</span></div>
+  </aside>
+  <main class="main">
+    <section id="chatView" class="view">
+      <header class="topbar"><div><div class="eyebrow">SALON ACTUEL</div><h2 id="roomTitle"># général</h2></div><div class="top-actions"><span class="secure-label">● ESPACE PRIVÉ</span><button class="icon-btn" id="openSettings" title="Personnaliser">⚙</button></div></header>
+      <div id="authNotice" class="notice">Connecte Firebase pour activer les comptes et les messages partagés. Le mode démo fonctionne sur cet appareil.</div>
+      <div id="messages" class="messages"><div class="empty-state"><div class="empty-icon">✳</div><h3>Bienvenue sur REDCHAT</h3><p>Un espace simple pour discuter.</p></div></div>
+      <form id="messageForm" class="composer"><button type="button" class="attach-btn" title="Bientôt disponible" disabled>＋</button><input id="messageInput" maxlength="2000" autocomplete="off" placeholder="Écrire un message dans #général…" required><button class="send-btn" type="submit" aria-label="Envoyer">↑</button></form>
+      <div class="composer-hint">Entrée pour envoyer · Respecte les autres et protège tes informations personnelles.</div>
+    </section>
+    <section id="settingsView" class="view hidden">
+      <header class="topbar"><div><div class="eyebrow">TON ESPACE</div><h2>Personnalisation</h2></div><button class="icon-btn" id="backToChat">←</button></header>
+      <div class="settings-content">
+        <div class="settings-intro"><span class="eyebrow">APPARENCE</span><h3>Fais de REDCHAT ton espace.</h3><p>Les préférences sont sauvegardées pour ton compte si Firebase est configuré, sinon sur cet appareil.</p></div>
+        <div class="setting-card"><h3>Thème</h3><p>Choisis une base pour ton interface.</p><div class="theme-options">
+          <button class="theme-choice selected" data-theme="black"><span class="swatch sw-black"></span><b>Black & White</b><small>Par défaut</small></button>
+          <button class="theme-choice" data-theme="midnight"><span class="swatch sw-midnight"></span><b>Midnight</b><small>Noir bleuté</small></button>
+          <button class="theme-choice" data-theme="light"><span class="swatch sw-light"></span><b>Light Minimal</b><small>Clair</small></button>
+        </div></div>
+        <div class="setting-card"><h3>Couleur d'accent</h3><p>Personnalise les boutons et les détails.</p><div class="color-row"><input type="color" id="accentColor" value="#ffffff"><div><b id="accentHex">#FFFFFF</b><small>Choisis ta couleur</small></div><button class="text-btn" id="resetAccent">Réinitialiser</button></div></div>
+        <div class="setting-card"><h3>Ambiance</h3><div class="control-row"><label for="wallpaper">Fond personnalisé</label><input id="wallpaper" type="color" value="#090909"></div><div class="control-row"><label for="density">Espacement de l'interface</label><select id="density"><option value="comfortable">Confortable</option><option value="compact">Compact</option></select></div><div class="control-row"><label for="fontSize">Taille du texte</label><select id="fontSize"><option value="14">Petite</option><option value="15" selected>Normale</option><option value="17">Grande</option></select></div></div>
+        <div class="setting-actions"><button class="primary-btn" id="saveTheme">Enregistrer mes préférences</button><button class="secondary-btn" id="resetTheme">Réinitialiser le thème</button></div>
+        <div class="setting-card account-card"><h3>Compte</h3><p id="accountDescription">Connecte-toi pour synchroniser tes préférences entre appareils.</p><button class="secondary-btn" id="authBtn">Connexion / Inscription</button></div>
+      </div>
+    </section>
+  </main>
+</div>
+<div id="authModal" class="modal hidden"><form id="authForm" class="modal-card"><button type="button" class="modal-close" id="closeAuth">×</button><span class="eyebrow">TON COMPTE</span><h2 id="authTitle">Connexion</h2><p>Retrouve tes salons et tes préférences.</p><label>Adresse e-mail<input type="email" id="authEmail" required autocomplete="email"></label><label>Mot de passe<input type="password" id="authPassword" required minlength="6" autocomplete="current-password"></label><button class="primary-btn" type="submit" id="authSubmit">Se connecter</button><button type="button" class="text-btn" id="toggleAuth">Créer un compte</button><p id="authError" class="error"></p></form></div>
+<div id="toast" class="toast" role="status"></div>
+<script type="module" src="app.js"></script>
+</body></html>
